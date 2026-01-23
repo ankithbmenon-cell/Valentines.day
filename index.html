@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Valentine's Day Surprise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Hearts and flowers decorations */
+        .decoration {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .heart {
+            color: #ff4d6d;
+            font-size: 24px;
+            position: absolute;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .rose {
+            color: #d32f2f;
+            font-size: 28px;
+            position: absolute;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .flower {
+            color: #ff9800;
+            font-size: 22px;
+            position: absolute;
+            animation: float 12s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Main container */
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin: 20px;
+            border: 8px solid #ff4d6d;
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            color: #555;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 1.8rem;
+            color: #ff4081;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+
+        /* Button styles */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            min-width: 160px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        #yesBtn {
+            background: linear-gradient(to right, #ff4d6d, #ff8fa3);
+            color: white;
+            z-index: 2;
+        }
+
+        #yesBtn:hover {
+            background: linear-gradient(to right, #e03e5a, #ff7a95);
+            box-shadow: 0 12px 20px rgba(255, 77, 109, 0.3);
+            transform: translateY(-5px);
+        }
+
+        #noBtn {
+            background: linear-gradient(to right, #6c757d, #adb5bd);
+            color: white;
+            position: relative;
+        }
+
+        #noBtn:hover {
+            background: linear-gradient(to right, #5a6268, #919ca6);
+        }
+
+        /* Moving effect for No button */
+        .running {
+            animation: runAway 0.5s ease-out;
+        }
+
+        @keyframes runAway {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(var(--moveX)) translateY(var(--moveY)); }
+        }
+
+        /* Hidden page for the message */
+        .hidden-page {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin: 20px;
+            border: 8px solid #ff4d6d;
+        }
+
+        .valentine-message {
+            font-size: 1.8rem;
+            color: #d32f2f;
+            line-height: 1.8;
+            padding: 20px;
+            background: linear-gradient(to right, #fff5f7, #ffeef1);
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hearts-row {
+            font-size: 2.5rem;
+            color: #ff4d6d;
+            margin: 30px 0;
+            letter-spacing: 10px;
+        }
+
+        .back-btn {
+            background: linear-gradient(to right, #4CAF50, #66BB6A);
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(to right, #43A047, #5CAF60);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            color: #fff;
+            text-align: center;
+            font-size: 1rem;
+            padding: 10px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .question {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 1.3rem;
+                min-width: 140px;
+            }
+            
+            .valentine-message {
+                font-size: 1.5rem;
+            }
+            
+            .buttons-container {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container, .hidden-page {
+                padding: 30px 20px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1.2rem;
+                min-width: 120px;
+            }
+            
+            .valentine-message {
+                font-size: 1.3rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative hearts and flowers -->
+    <div id="decorations"></div>
+
+    <!-- Main page -->
+    <div class="container" id="mainPage">
+        <h1><i class="fas fa-heart"></i> Happy Valentine's Day! <i class="fas fa-heart"></i></h1>
+        
+        <div class="message">
+            <p>My dearest love, on this special day dedicated to celebrating love, I want you to know how incredibly special you are to me.</p>
+            <p>Every moment with you feels like a beautiful dream that I never want to wake up from.</p>
+        </div>
+        
+        <div class="question">
+            <p>Will you be my Valentine forever? 💖</p>
+        </div>
+        
+        <div class="buttons-container">
+            <button class="btn" id="yesBtn">YES! 💝</button>
+            <button class="btn" id="noBtn">No 😢</button>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <p><i class="fas fa-heart" style="color:#ff4d6d;"></i> You mean everything to me <i class="fas fa-heart" style="color:#ff4d6d;"></i></p>
+        </div>
+    </div>
+
+    <!-- Hidden page with Valentine's message -->
+    <div class="hidden-page" id="hiddenPage">
+        <h1><i class="fas fa-heart"></i> Happy Valentine's Day! <i class="fas fa-heart"></i></h1>
+        
+        <div class="hearts-row">
+            ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
+        </div>
+        
+        <div class="valentine-message">
+            <p>Happy valentines dayyyyy myyyyy dearestt wifeyyyyyy. I loveeeeee youuuuu soooo muchhhh myyy babyyy and im the luckiest guy in the entire universe to haveee someone as special as youuu!!!!. I really really want this forverrrrrr. Happy valentines dayy ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</p>
+        </div>
+        
+        <div class="hearts-row">
+            ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
+        </div>
+        
+        <button class="back-btn" id="backBtn">Back to Question</button>
+    </div>
+
+    <footer>
+        <p>Made with <i class="fas fa-heart" style="color:#ff4d6d;"></i> for the most amazing person in the world</p>
+    </footer>
+
+    <script>
+        // Create decorative elements
+        function createDecorations() {
+            const decorationsContainer = document.getElementById('decorations');
+            const heartIcons = ['fas fa-heart', 'far fa-heart', 'fas fa-heart-broken'];
+            const flowerIcons = ['fas fa-spa', 'fas fa-leaf', 'fas fa-seedling'];
+            
+            // Create hearts
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'decoration heart';
+                heart.innerHTML = `<i class="${heartIcons[Math.floor(Math.random() * heartIcons.length)]}"></i>`;
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                decorationsContainer.appendChild(heart);
+            }
+            
+            // Create roses
+            for (let i = 0; i < 15; i++) {
+                const rose = document.createElement('div');
+                rose.className = 'decoration rose';
+                rose.innerHTML = '<i class="fas fa-heart"></i>';
+                rose.style.left = `${Math.random() * 100}vw`;
+                rose.style.top = `${Math.random() * 100}vh`;
+                rose.style.fontSize = `${Math.random() * 15 + 20}px`;
+                rose.style.animationDelay = `${Math.random() * 5}s`;
+                decorationsContainer.appendChild(rose);
+            }
+            
+            // Create flowers
+            for (let i = 0; i < 20; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'decoration flower';
+                flower.innerHTML = `<i class="${flowerIcons[Math.floor(Math.random() * flowerIcons.length)]}"></i>`;
+                flower.style.left = `${Math.random() * 100}vw`;
+                flower.style.top = `${Math.random() * 100}vh`;
+                flower.style.fontSize = `${Math.random() * 15 + 15}px`;
+                flower.style.animationDelay = `${Math.random() * 5}s`;
+                decorationsContainer.appendChild(flower);
+            }
+        }
+
+        // Make the No button move around
+        function setupNoButton() {
+            const noBtn = document.getElementById('noBtn');
+            const container = document.querySelector('.container');
+            
+            noBtn.addEventListener('mouseover', function() {
+                moveButton(noBtn, container);
+            });
+            
+            noBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                moveButton(noBtn, container);
+            });
+            
+            noBtn.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                moveButton(noBtn, container);
+            });
+        }
+        
+        function moveButton(button, container) {
+            // Remove any previous running animation
+            button.classList.remove('running');
+            
+            // Calculate new position within container bounds
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
+            
+            // Calculate max movement area
+            const maxX = containerRect.width - buttonRect.width - 20;
+            const maxY = containerRect.height - buttonRect.height - 20;
+            
+            // Generate random position
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            
+            // Calculate how far to move
+            const moveX = newX - (button.offsetLeft);
+            const moveY = newY - (button.offsetTop);
+            
+            // Set CSS variables for animation
+            button.style.setProperty('--moveX', `${moveX}px`);
+            button.style.setProperty('--moveY', `${moveY}px`);
+            
+            // Trigger the animation
+            void button.offsetWidth; // Trigger reflow
+            button.classList.add('running');
+            
+            // Remove animation class after animation completes
+            setTimeout(() => {
+                button.classList.remove('running');
+                // Set final position
+                button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }, 500);
+        }
+
+        // Setup button click events
+        function setupButtonEvents() {
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const backBtn = document.getElementById('backBtn');
+            const mainPage = document.getElementById('mainPage');
+            const hiddenPage = document.getElementById('hiddenPage');
+            
+            // Yes button shows hidden page
+            yesBtn.addEventListener('click', function() {
+                mainPage.style.display = 'none';
+                hiddenPage.style.display = 'block';
+                
+                // Add celebration effect
+                celebrate();
+            });
+            
+            // Back button returns to main page
+            backBtn.addEventListener('click', function() {
+                hiddenPage.style.display = 'none';
+                mainPage.style.display = 'block';
+                
+                // Reset No button position
+                noBtn.style.transform = 'translate(0, 0)';
+            });
+        }
+        
+        // Celebration effect when Yes is clicked
+        function celebrate() {
+            const colors = ['#ff4d6d', '#ff8fa3', '#d32f2f', '#ff4081'];
+            const hiddenPage = document.getElementById('hiddenPage');
+            
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                heart.style.zIndex = '9999';
+                heart.style.opacity = '0.8';
+                heart.style.animation = `float ${Math.random() * 2 + 1}s ease-in-out forwards`;
+                
+                hiddenPage.appendChild(heart);
+                
+                // Remove hearts after animation
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createDecorations();
+            setupNoButton();
+            setupButtonEvents();
+        });
+    </script>
+</body>
+</html>
