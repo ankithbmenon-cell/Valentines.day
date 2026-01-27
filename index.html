@@ -151,7 +151,7 @@
             100% { transform: translateX(var(--moveX)) translateY(var(--moveY)); }
         }
 
-        /* Hidden page for the message */
+        /* Hidden pages */
         .hidden-page {
             display: none;
             background-color: rgba(255, 255, 255, 0.95);
@@ -179,6 +179,46 @@
             position: relative;
         }
 
+        /* NEW: I Love You Page Styling */
+        .love-message {
+            font-size: 2.2rem;
+            color: #ff4081;
+            line-height: 1.6;
+            padding: 30px;
+            background: linear-gradient(45deg, #fff0f3, #ffe4e9);
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+            border: 4px dashed #ff4d6d;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .love-title {
+            font-size: 3rem;
+            color: #d32f2f;
+            margin: 20px 0;
+            text-shadow: 3px 3px 0px rgba(255, 64, 129, 0.2);
+        }
+
+        .love-hearts {
+            font-size: 3.5rem;
+            color: #ff4d6d;
+            margin: 30px 0;
+            letter-spacing: 15px;
+            animation: heartBeat 1.5s infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
         .hearts-row {
             font-size: 2.5rem;
             color: #ff4d6d;
@@ -186,7 +226,7 @@
             letter-spacing: 10px;
         }
 
-        .back-btn {
+        .back-btn, .next-btn {
             background: linear-gradient(to right, #4CAF50, #66BB6A);
             color: white;
             padding: 12px 30px;
@@ -196,11 +236,29 @@
             cursor: pointer;
             margin-top: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+        }
+
+        .next-btn {
+            background: linear-gradient(to right, #2196F3, #42A5F5);
         }
 
         .back-btn:hover {
             background: linear-gradient(to right, #43A047, #5CAF60);
             transform: translateY(-3px);
+        }
+
+        .next-btn:hover {
+            background: linear-gradient(to right, #1E88E5, #3D8BF2);
+            transform: translateY(-3px);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
         }
 
         /* Footer */
@@ -232,6 +290,14 @@
                 font-size: 1.5rem;
             }
             
+            .love-message {
+                font-size: 1.8rem;
+            }
+            
+            .love-title {
+                font-size: 2.5rem;
+            }
+            
             .buttons-container {
                 gap: 20px;
             }
@@ -256,6 +322,20 @@
                 font-size: 1.3rem;
                 padding: 15px;
             }
+            
+            .love-message {
+                font-size: 1.5rem;
+                padding: 20px;
+            }
+            
+            .love-title {
+                font-size: 2rem;
+            }
+            
+            .love-hearts {
+                font-size: 2.5rem;
+                letter-spacing: 8px;
+            }
         }
     </style>
 </head>
@@ -268,8 +348,8 @@
         <h1><i class="fas fa-heart"></i> Happy Valentine's Day! <i class="fas fa-heart"></i></h1>
         
         <div class="message">
-            <p>My dearest love, on this special day dedicated to celebrating love, I want you to know how incredibly special you are to me.</p>
-            <p>Every moment with you feels like a beautiful dream that I never want to wake up from.</p>
+            <p>My dearest wifeyyy, on this day dedicated to celebrating love and affection, I want you to know how important and special you are to me.</p>
+            <p>Ever since meeting you, i have been nothing but happy and im the happiest when im with you my dearesttt wifeyyyy 💖💖💖💖💖</p>
         </div>
         
         <div class="question">
@@ -286,8 +366,8 @@
         </div>
     </div>
 
-    <!-- Hidden page with Valentine's message -->
-    <div class="hidden-page" id="hiddenPage">
+    <!-- Hidden page 1 - Valentine's message -->
+    <div class="hidden-page" id="valentinePage">
         <h1><i class="fas fa-heart"></i> Happy Valentine's Day! <i class="fas fa-heart"></i></h1>
         
         <div class="hearts-row">
@@ -295,14 +375,51 @@
         </div>
         
         <div class="valentine-message">
-            <p>Happy valentines dayyyyy myyyyy dearestt wifeyyyyyy. I loveeeeee youuuuu soooo muchhhh myyy babyyy and im the luckiest guy in the entire universe to haveee someone as special as youuu!!!!. I really really want this forverrrrrr. Happy valentines dayy ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</p>
+            <p>Happy valentines dayyyyy myyyyy dearestt wifeyyyyyy. I loveeeeee youuuuu soooo muchhhh myyy babyyy and im the luckiest guy in the entire universe to haveee someone as special as youuu!!!!. I really really want this to last forverrrrrr. You mean the whole world, the universe , everything to me and theres nothing i wouldnt do for youuuu myy babyy my lifee my everythingggg.  Happy valentines dayy ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</p>
         </div>
         
         <div class="hearts-row">
             ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
         </div>
         
-        <button class="back-btn" id="backBtn">Back to Question</button>
+        <div class="navigation-buttons">
+            <button class="back-btn" id="backToMainBtn">Back to Question</button>
+            <button class="next-btn" id="goToLovePageBtn">More Love 💖</button>
+        </div>
+    </div>
+
+    <!-- NEW: Hidden page 2 - I Love You page -->
+    <div class="hidden-page" id="lovePage">
+        <h1 class="love-title">I LOVE YOU! 💕</h1>
+        
+        <div class="love-hearts">
+            💖💖💖💖💖💖💖💖💖💖
+        </div>
+        
+        <div class="love-message">
+            <p>I LOVE YOU I LOVE YOU I LOVE YOU!</p>
+            <p>I LOVE YOU SOOOO MUCHHHHHHH! 💕</p>
+            <p>YOURE MY EVERYTHINGGGGGG! 🌟</p>
+            <p>YOU MEAN THE WORLD TO MEEEEEE💓</p>
+            <p>YOU ARE THE BEST THING THAT HAS EVER HAPPENED TO ME! ✨</p>
+            <p>I LOVE YOU THE MOSTTTTTTTTTTT! 💌</p>
+            <p>FOREVER AND EVER AND EVER AND EVER! 💑</p>
+        </div>
+        
+        <div class="love-hearts">
+            💕💕💕💕💕💕💕💕💕💕
+        </div>
+        
+        <div class="navigation-buttons">
+            <button class="back-btn" id="backToValentineBtn">Back to Message</button>
+            <button class="next-btn" id="backToMainFromLoveBtn">Back to Start</button>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <p style="color: #ff4081; font-size: 1.5rem;">
+                With all my love, forever and always... ❤️
+            </p>
+        </div>
     </div>
 
     <footer>
@@ -411,27 +528,50 @@
 
         // Setup button click events
         function setupButtonEvents() {
+            // Get all page elements
+            const mainPage = document.getElementById('mainPage');
+            const valentinePage = document.getElementById('valentinePage');
+            const lovePage = document.getElementById('lovePage');
+            
+            // Get all buttons
             const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
-            const backBtn = document.getElementById('backBtn');
-            const mainPage = document.getElementById('mainPage');
-            const hiddenPage = document.getElementById('hiddenPage');
+            const backToMainBtn = document.getElementById('backToMainBtn');
+            const goToLovePageBtn = document.getElementById('goToLovePageBtn');
+            const backToValentineBtn = document.getElementById('backToValentineBtn');
+            const backToMainFromLoveBtn = document.getElementById('backToMainFromLoveBtn');
             
-            // Yes button shows hidden page
+            // Yes button shows valentine page
             yesBtn.addEventListener('click', function() {
                 mainPage.style.display = 'none';
-                hiddenPage.style.display = 'block';
-                
-                // Add celebration effect
+                valentinePage.style.display = 'block';
                 celebrate();
             });
             
-            // Back button returns to main page
-            backBtn.addEventListener('click', function() {
-                hiddenPage.style.display = 'none';
+            // Back to main from valentine page
+            backToMainBtn.addEventListener('click', function() {
+                valentinePage.style.display = 'none';
                 mainPage.style.display = 'block';
-                
-                // Reset No button position
+                noBtn.style.transform = 'translate(0, 0)';
+            });
+            
+            // Go to love page from valentine page
+            goToLovePageBtn.addEventListener('click', function() {
+                valentinePage.style.display = 'none';
+                lovePage.style.display = 'block';
+                loveCelebration();
+            });
+            
+            // Back to valentine from love page
+            backToValentineBtn.addEventListener('click', function() {
+                lovePage.style.display = 'none';
+                valentinePage.style.display = 'block';
+            });
+            
+            // Back to main from love page
+            backToMainFromLoveBtn.addEventListener('click', function() {
+                lovePage.style.display = 'none';
+                mainPage.style.display = 'block';
                 noBtn.style.transform = 'translate(0, 0)';
             });
         }
@@ -439,7 +579,7 @@
         // Celebration effect when Yes is clicked
         function celebrate() {
             const colors = ['#ff4d6d', '#ff8fa3', '#d32f2f', '#ff4081'];
-            const hiddenPage = document.getElementById('hiddenPage');
+            const valentinePage = document.getElementById('valentinePage');
             
             for (let i = 0; i < 50; i++) {
                 const heart = document.createElement('div');
@@ -453,12 +593,38 @@
                 heart.style.opacity = '0.8';
                 heart.style.animation = `float ${Math.random() * 2 + 1}s ease-in-out forwards`;
                 
-                hiddenPage.appendChild(heart);
+                valentinePage.appendChild(heart);
                 
                 // Remove hearts after animation
                 setTimeout(() => {
                     heart.remove();
                 }, 3000);
+            }
+        }
+
+        // Special celebration for love page
+        function loveCelebration() {
+            const lovePage = document.getElementById('lovePage');
+            const symbols = ['❤️', '💕', '💖', '💓', '💗', '💘', '💝'];
+            
+            for (let i = 0; i < 100; i++) {
+                const symbol = document.createElement('div');
+                symbol.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                symbol.style.position = 'absolute';
+                symbol.style.fontSize = `${Math.random() * 25 + 20}px`;
+                symbol.style.color = ['#ff4d6d', '#ff4081', '#d32f2f', '#ff1493'][Math.floor(Math.random() * 4)];
+                symbol.style.left = `${Math.random() * 100}%`;
+                symbol.style.top = `${Math.random() * 100}%`;
+                symbol.style.zIndex = '9999';
+                symbol.style.opacity = '0.9';
+                symbol.style.animation = `float ${Math.random() * 3 + 2}s ease-in-out forwards`;
+                
+                lovePage.appendChild(symbol);
+                
+                // Remove symbols after animation
+                setTimeout(() => {
+                    symbol.remove();
+                }, 5000);
             }
         }
 
